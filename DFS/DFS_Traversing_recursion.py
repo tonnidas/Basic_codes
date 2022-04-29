@@ -43,3 +43,13 @@ print(start_node)
 
 print("visiting sequence: ")
 dfs(start_node)
+
+# 7 7
+# 1 2
+# 2 5
+# 1 4
+# 5 4
+# 5 11
+# 4 8
+# 4 7
+# 20
