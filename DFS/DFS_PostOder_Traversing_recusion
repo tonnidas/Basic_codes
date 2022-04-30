@@ -1,0 +1,28 @@
+# Problem: https://leetcode.com/problems/binary-tree-postorder-traversal/submissions/
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    a = list()
+    def dfs(self, root):
+        if root:
+            self.dfs(root.left)
+            self.dfs(root.right)
+            self.a.append(root.val)
+        else:
+            return 
+        
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        self.a = list()
+        
+        self.dfs(root)
+        
+        return self.a
+
+# Input: root = [1,null,2,3]
+# Output: [3,2,1]
