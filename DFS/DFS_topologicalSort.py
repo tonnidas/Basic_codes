@@ -1,25 +1,29 @@
-# Problem: https://leetcode.com/problems/course-schedule/
+# Problem: https://leetcode.com/problems/course-schedule-ii/submissions/
 
 class Solution:
     adjList = dict()
     color = dict()
     result = True
     
-    def dfs(self, n):
+    top = list()
+    
+    def topologicalSort(self, n):
         if self.color[n] == "gray":
             self.result = False
-            return 
+            return
+        
         elif self.color[n] == "green":
             return
         
         self.color[n] = "gray"
         
         for i in self.adjList[n]:
-            self.dfs(i)
+            self.topologicalSort(i)
             
         self.color[n] = "green"
-    
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        self.top.append(n)
+        
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         self.adjList = dict()
         self.color = dict()
         self.result = True
@@ -30,11 +34,19 @@ class Solution:
             
         for i in prerequisites:
             self.adjList[i[1]].add(i[0])
+            
+        # print(self.adjList)
                     
         if len(prerequisites) == 0:
-            return True
+            return range(numCourses)
+        
+        self.top = list()
         
         for i in range(numCourses):
-            self.dfs(i)
+            self.topologicalSort(i)
+
+        if self.result == False:
+            return []
         
-        return self.result
+        self.top.reverse()
+        return self.top
