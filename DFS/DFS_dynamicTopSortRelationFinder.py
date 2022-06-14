@@ -48,3 +48,4 @@ class Solution:
                 self.ans.append(self.states[(i[0], i[1])])
         
         return self.ans
+        8D6FWh8X5s
